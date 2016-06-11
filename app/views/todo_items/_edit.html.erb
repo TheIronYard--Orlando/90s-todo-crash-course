@@ -1,0 +1,8 @@
+<%= form_for todo_item, authenticity_token: false, enforce_utf8: false do |f| %>
+  <%= f.check_box :complete, class: 'toggle' %>
+  <%= f.text_field :text %>
+  <%= f.submit %>
+<% end %>
+<%= form_for todo_item, method: :delete do |f| %>
+  <%= f.submit 'X' %>
+<% end %>

@@ -1,0 +1,49 @@
+<div class="todoapp">
+	<%= form_for @new_todo_item, html: { id: "header" } do |f| %>
+		<h1>todos</h1>
+		<label>What needs to be done?</label>
+		<%= f.text_field :text, class: 'new-todo-90s' %>
+		<%= f.submit "Save" %>
+	<% end %>
+	<% if @all_todos.any? %>
+		<div class="main">
+			<ul class="todo-list-90s">
+				<%= render @todo_items %>
+			</ul>
+			<%= form_tag toggle_all_todo_items_path, id: 'toggle_all' do %>
+				<input class="toggle-all-90s" type="submit" value="Toggle all">
+			<% end %>
+		</div>
+		<div class="footer">
+			<span class="todo-count"><strong><%= @active_todos.count %></strong> <%= 'item'.pluralize @active_todos.count %> left</span>
+			<!-- Remove this if you don't implement routing -->
+			<ul class="filters">
+				<li>
+					<%= link_to_unless_current 'All', root_path do %>
+					  <span class="selected">All</span>
+					<% end %>
+				</li>
+				<li>
+					<%= link_to_unless_current 'Active', active_todo_items_path  do %>
+					  <span class="selected">Active</span>
+					<% end %>
+				</li>
+				<li>
+					<%= link_to_unless_current 'Completed', completed_todo_items_path  do %>
+					  <span class="selected">Completed</span>
+					<% end %>
+				</li>
+			</ul>
+			<% if @all_todos.count > @active_todos.count %>
+			  <%= form_tag clear_completed_todo_items_path do %>
+					<button class="clear-completed">Clear completed</button>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+<div class="info">
+	<p>Created by <a href="http://todomvc.com">you</a></p>
+	<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</div>
+</div>

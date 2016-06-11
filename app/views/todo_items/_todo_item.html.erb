@@ -1,0 +1,11 @@
+<li <%= todo_item.complete?? 'class=completed' : nil %>>
+  <div class="view">
+    <% if todo_item == @todo_item %>
+      <%= render partial: 'edit', locals: { todo_item: todo_item } %>
+    <% else %>
+      <%= check_box_tag "item_#{todo_item.id}", nil, todo_item.complete, disabled: true, class: 'toggle' %>
+      <%= link_to todo_item.text, [:edit, todo_item] %>
+    <% end %>
+    <button class="destroy"></button>
+  </div>
+</li>
