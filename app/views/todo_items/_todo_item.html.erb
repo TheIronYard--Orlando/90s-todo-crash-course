@@ -3,9 +3,8 @@
     <% if todo_item == @todo_item %>
       <%= render partial: 'edit', locals: { todo_item: todo_item } %>
     <% else %>
-      <%= check_box_tag "item_#{todo_item.id}", nil, todo_item.complete, disabled: true, class: 'toggle' %>
+      <%= check_box_tag "item_#{todo_item.id}", nil, todo_item.complete, disabled: true, class: nil, id: nil, name: nil %>
       <%= link_to todo_item.text, [:edit, todo_item] %>
     <% end %>
-    <button class="destroy"></button>
   </div>
 </li>

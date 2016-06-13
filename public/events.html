@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>List JS Events</title>
+<style>
+  li span {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <h1>List the JavaScript Events</h1>
+  <h2>How can you interact with the JavaScript todo app?</h2>
+  <form id="eventForm"><input type="text"><button>Name A JS Event</button></form>
+  <ul>
+    <li data-key="click"><span>Click a link</span></li>
+    <li data-key="submit"><span>Submit a form</span></li>
+    <li data-key="press"><span>Press a key</span></li>
+    <li data-key="other"><span>Click another element (besides link)</span></li>
+    <li data-key="double"><span>Doubleclick an element</span></li>
+    <li data-key="focus"><span>Focus/lose focus on an element</span></li>
+  </ul>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+  jQuery(function ($) { // this runs the rest as soon as the page is ready
+    $('#eventForm').on('submit', function(event){ // hey #eventForm. on submit, do the following
+      event.preventDefault(); //don't actually submit the form to the server
+      var $input = $(this).find('input'); //find the input element in this (form)
+      var guess = $input.val(); // store the value of the input in the variable 'guess'
+      $('li').each(function(index, li){ // do the following for each li element
+        var key = $(li).data('key'); // get the data-key for one particular li
+        if(guess.includes(key)){ // see if the guess includes the data-key
+          $(li).find('span').show(); // if it does, show the span inside the li
+        }
+      });
+    $input.val(''); // set the value of the input to empty
+    });
+  });
+  </script>
+</body>
+</html>
