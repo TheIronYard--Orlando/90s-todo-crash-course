@@ -22,9 +22,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
   jQuery(function ($) { // this runs the rest as soon as the page is ready
-    $('#eventForm').on('submit', function(event){ // hey #eventForm. on submit, do the following
+    var revealCorrectGuess = function(event){
       event.preventDefault(); //don't actually submit the form to the server
-      var $input = $(this).find('input'); //find the input element in this (form)
+      var $input = $('#eventForm').find('input'); //find the input element in the form
       var guess = $input.val(); // store the value of the input in the variable 'guess'
       $('li').each(function(index, li){ // do the following for each li element
         var key = $(li).data('key'); // get the data-key for one particular li
@@ -34,6 +34,9 @@
       });
     $input.val(''); // set the value of the input to empty
     });
+
+    }
+    $('#eventForm').on('submit', revealCorrectGuess);// hey #eventForm. on submit, run the revealCorrectGuess function
   });
   </script>
 </body>

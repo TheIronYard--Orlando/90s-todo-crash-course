@@ -56,7 +56,6 @@ jQuery(function ($) {
 				.on('focusout', '.edit', App.update)
 				.on('click', '.destroy', App.destroy);
 		},
-		},
 		addTodo: function(event){
 			var $input = $(event.target);
 			var val = $input.val().trim();
